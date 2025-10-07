@@ -17,6 +17,17 @@ return {
       vim.g.everforest_diagnostic_text_highlight = 1
       vim.g.everforest_better_performance = 1
       vim.cmd.colorscheme 'everforest'
+
+      -- Apply colorscheme immediately
+      vim.cmd [[colorscheme everforest]]
+
+      -- Ensure it's reapplied after other plugins set highlights
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        pattern = '*',
+        callback = function()
+          vim.cmd [[colorscheme everforest]]
+        end,
+      })
     end,
   },
 }
